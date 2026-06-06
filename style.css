@@ -425,9 +425,11 @@ top: calc(18.519vh - 100px);    /* Figma Y: 200 / 1080 */
 .closing-page {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  max-width: 1920px;
+  aspect-ratio: 1920 / 918;
   background: #B7A99F;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 .closing-page span {
