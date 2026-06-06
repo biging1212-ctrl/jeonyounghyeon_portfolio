@@ -100,49 +100,14 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
 
   const fileInput = zone.querySelector('input[type="file"]');
 
-  // ── Auto-load from assets folder ──
-  const padded  = String(pageNum).padStart(2, '0');
-  const videoSrc = `assets/videos/page-${padded}.mp4`;
-  const imgExts  = ['jpg', 'jpeg', 'png', 'webp'];
+// ── Auto-load from assets folder ──
+const padded = String(pageNum).padStart(2, '0');
 
-  function tryLoadImage(s, z, exts, idx) {
-    if (idx >= exts.length) {
-      const sv = loadSaved();
-      if (sv[s.dataset.index]) renderMedia(s, z, sv[s.dataset.index].type, sv[s.dataset.index].src);
-      return;
-    }
-    const src  = `assets/images/page-${s.querySelector('.slot-num').textContent.slice(0,2)}.${exts[idx]}`;
-    const test = new Image();
-    test.onload  = () => renderMedia(s, z, 'image', src);
-    test.onerror = () => tryLoadImage(s, z, exts, idx + 1);
-    test.src = src;
-  }
-
-  (function (s, z, vSrc, pg) {
-    const padPg = String(pg).padStart(2, '0');
-    const vidEl = document.createElement('video');
-    vidEl.oncanplay = () => { vidEl.remove(); renderMedia(s, z, 'video', vSrc); };
-    vidEl.onerror   = () => {
-      vidEl.remove();
-      // try image extensions
-      const exts = ['jpg', 'jpeg', 'png', 'webp'];
-      function tryImg(idx) {
-        if (idx >= exts.length) {
-          const sv = loadSaved();
-          if (sv[s.dataset.index]) renderMedia(s, z, sv[s.dataset.index].type, sv[s.dataset.index].src);
-          return;
-        }
-        const src  = `assets/images/page-${padPg}.${exts[idx]}`;
-        const test = new Image();
-        test.onload  = () => renderMedia(s, z, 'image', src);
-        test.onerror = () => tryImg(idx + 1);
-        test.src = src;
-      }
-      tryImg(0);
-    };
-    vidEl.src     = vSrc;
-    vidEl.preload = 'metadata';
-  })(slot, zone, videoSrc, pageNum);
+if (VIDEO_PAGES.has(pageNum)) {
+  renderMedia(slot, zone, 'video', `assets/videos/page-${padded}.mp4`);
+} else {
+  renderMedia(slot, zone, 'image', `assets/images/page-${padded}.png`);
+}
 
   // ── File input change ──
   fileInput.addEventListener('change', (e) => {
