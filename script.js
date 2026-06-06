@@ -1,29 +1,21 @@
 // ── Hero Typing Animation ──
 (function initTyping() {
-  const line1 = document.getElementById('typing-line-1');
-  const line2 = document.getElementById('typing-line-2');
-  if (!line1 || !line2) return;
+  const target = document.getElementById('typing-portfolio');
+  const cursor = document.getElementById('typing-cursor');
+  if (!target || !cursor) return;
 
-  const TEXT_1     = 'PORTFOLIO';
-  const TEXT_2     = '2026';
-  const CHAR_SPEED = 80;
-  const LINE_PAUSE = 220;
-  const END_PAUSE  = 900;
-
-  const t1 = document.createElement('span');
-  const t2 = document.createElement('span');
-  const cursor = document.createElement('span');
-  cursor.className = 'hero-cursor';
-  cursor.textContent = '|';
-
-  line1.appendChild(t1);
-  line1.appendChild(cursor);
+  const TEXT = 'Portfolio';
+  const CHAR_SPEED = 85;
+  const START_DELAY = 450;
+  const END_PAUSE = 700;
 
   function typeInto(el, text) {
     return new Promise((resolve) => {
       let i = 0;
       const tick = setInterval(() => {
-        el.textContent += text[i++];
+        el.textContent += text[i];
+        i += 1;
+
         if (i >= text.length) {
           clearInterval(tick);
           resolve();
@@ -33,24 +25,20 @@
   }
 
   async function run() {
-    await new Promise((r) => setTimeout(r, 400));
-    await typeInto(t1, TEXT_1);
-    await new Promise((r) => setTimeout(r, LINE_PAUSE));
-
-    line2.appendChild(t2);
-    line2.appendChild(cursor);
-
-    await typeInto(t2, TEXT_2);
+    await new Promise((r) => setTimeout(r, START_DELAY));
+    await typeInto(target, TEXT);
     await new Promise((r) => setTimeout(r, END_PAUSE));
 
-    cursor.style.transition = 'opacity 0.5s';
+    cursor.style.transition = 'opacity 0.35s';
     cursor.style.opacity = '0';
-    setTimeout(() => cursor.remove(), 600);
+
+    setTimeout(() => {
+      cursor.remove();
+    }, 400);
   }
 
   run();
 })();
-
 
 // ── Config ──
 const TOTAL_PAGES = 76; // page-02 ~ page-77
