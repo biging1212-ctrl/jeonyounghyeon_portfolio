@@ -56,6 +56,8 @@
 const TOTAL_PAGES = 76; // pages 2–77 (page 78 = closing HTML)
 const STORAGE_KEY = 'portfolio_slots';
 
+const VIDEO_PAGES = new Set([5, 7, 12, 13, 14, 16, 19, 20, 22, 24, 31, 32, 33, 36, 38, 42, 46, 48, 52, 54, 59, 61, 65, 67, 70, 74, 77]);
+
 // ── Load saved slots from localStorage ──
 function loadSaved() {
   try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
@@ -162,14 +164,21 @@ function renderMedia(slot, zone, type, src) {
     slot.appendChild(vid);
   } else {
     const img = document.createElement('img');
-    img.src     = src;
-    img.alt     = '';
-    img.loading = 'lazy';
+
+    img.alt = '';
+    img.loading = Number(slot.dataset.index) <= 3 ? 'eager' : 'lazy';
     img.decoding = 'async';
-    img.onload  = () => img.classList.add('loaded');
+
+    img.onload = () => img.classList.add('loaded');
+
+    img.src = src;
+
+    if (img.complete) {
+      img.classList.add('loaded');
+    }
+
     slot.appendChild(img);
   }
-
 }
 
 // ── Custom Cursor + Magnifier ──
