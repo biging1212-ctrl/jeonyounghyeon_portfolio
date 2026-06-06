@@ -221,7 +221,7 @@ img, video { display: block; width: 100%; }
 .hero-center {
   position: absolute;
   left: 10.417vw;   /* Figma X: 200 / 1920 */
-  top: 18.519vh;    /* Figma Y: 200 / 1080 */
+top: calc(18.519vh - 100px);    /* Figma Y: 200 / 1080 */
   text-align: left;
   z-index: 2;
 }
