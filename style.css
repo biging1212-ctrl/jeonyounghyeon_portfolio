@@ -218,43 +218,57 @@ img, video { display: block; width: 100%; }
 }
 
 /* ── Center title ── */
-/* Figma: X 554px, Y 100px on 1920×1080 canvas */
 .hero-center {
   position: absolute;
-  left: 28.854vw;   /* 554 ÷ 1920 × 100 */
-  top: 9.259vh;     /* 100 ÷ 1080 × 100 */
-  text-align: center;
+  left: 10.417vw;   /* Figma X: 200 / 1920 */
+  top: 18.519vh;    /* Figma Y: 200 / 1080 */
+  text-align: left;
+  z-index: 2;
 }
 
 .hero-title {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  font-family: var(--font);
+  color: #B7A99F;
 }
 
-.hero-title .line {
+.hero-line {
   display: block;
-  /* 150px @ 1920px = 7.8125vw */
-  font-size: clamp(40px, 7.8125vw, 150px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  line-height: 0.95;
-  min-height: 0.95em;
+  font-size: clamp(72px, 8.333vw, 160px);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  color: #B7A99F;
+  white-space: nowrap;
 }
 
-/* blinking cursor — sits inline after typed text */
+.hero-name,
+#typing-portfolio {
+  font-weight: 800; /* Fustat Extra Bold */
+}
+
+.hero-portfolio-line {
+  font-weight: 800;
+}
+
+.hero-paren {
+  font-weight: 700; /* Fustat Bold */
+}
+
+/* blinking cursor — sits after typed text */
 .hero-cursor {
   display: inline;
   font-size: inherit;
-  font-weight: 300;
+  font-weight: 700;
   line-height: inherit;
+  color: #B7A99F;
   animation: blink 0.8s step-end infinite;
 }
 
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+  50% { opacity: 0; }
 }
 
 /* ── Bottom bar ── */
