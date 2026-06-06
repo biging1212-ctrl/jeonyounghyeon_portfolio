@@ -238,7 +238,7 @@ top: calc(18.519vh - 100px);    /* Figma Y: 200 / 1080 */
   display: block;
   font-size: clamp(72px, 8.333vw, 160px);
   line-height: 1.05;
-  letter-spacing: -0.045em;
+  letter-spacing: 0.01em;
   color: #B7A99F;
   white-space: nowrap;
 }
