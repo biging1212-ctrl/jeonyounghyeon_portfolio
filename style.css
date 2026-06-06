@@ -231,7 +231,7 @@ top: calc(18.519vh - 100px);    /* Figma Y: 200 / 1080 */
   flex-direction: column;
   align-items: flex-start;
   font-family: var(--font);
-  color: #B7A99F;
+  color: #000000;
 }
 
 .hero-line {
@@ -239,7 +239,7 @@ top: calc(18.519vh - 100px);    /* Figma Y: 200 / 1080 */
   font-size: clamp(72px, 8.333vw, 160px);
   line-height: 1.05;
   letter-spacing: 0.01em;
-  color: #B7A99F;
+  color: #000000;
   white-space: nowrap;
 }
 
@@ -262,7 +262,7 @@ top: calc(18.519vh - 100px);    /* Figma Y: 200 / 1080 */
   font-size: inherit;
   font-weight: 700;
   line-height: inherit;
-  color: #B7A99F;
+  color: #000000;
   animation: blink 0.8s step-end infinite;
 }
 
@@ -426,7 +426,7 @@ top: calc(18.519vh - 100px);    /* Figma Y: 200 / 1080 */
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: #000000;
+  background: #B7A99F;
   overflow: hidden;
 }
 
@@ -439,14 +439,14 @@ top: calc(18.519vh - 100px);    /* Figma Y: 200 / 1080 */
   /* 50px @ 1920 = 2.604vw */
   font-size: clamp(18px, 2.604vw, 50px);
   font-weight: 700;
-  color: #fff;
+  color: #000000;
 }
 
 .cl-title {
   font-size: clamp(18px, 2.604vw, 50px);
   font-weight: 700;
   line-height: 1.17;
-  color: #fff;
+  color: #000000;
 }
 
 .cl-sub {
@@ -454,7 +454,7 @@ top: calc(18.519vh - 100px);    /* Figma Y: 200 / 1080 */
   font-size: clamp(9px, 1.042vw, 20px);
   font-weight: 700;
   line-height: 1.3;
-  color: #fff;
+  color: #000000;
   text-transform: uppercase;
 }
 
@@ -469,7 +469,7 @@ top: calc(18.519vh - 100px);    /* Figma Y: 200 / 1080 */
   font-size: clamp(9px, 1.042vw, 20px);
   font-weight: 600;
   line-height: 1.3;
-  color: #fff;
+  color: #000000;
 }
 
 /* ── Download Section ── */
