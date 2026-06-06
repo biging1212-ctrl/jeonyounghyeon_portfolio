@@ -5,7 +5,7 @@
   if (!target || !cursor) return;
 
   const TEXT = 'Portfolio';
-  const CHAR_SPEED = 110;
+  const CHAR_SPEED = 130;
   const START_DELAY = 600;
   const END_PAUSE = 600;
 
@@ -41,14 +41,14 @@
 })();
 
 // ── Config ──
-const TOTAL_PAGES = 76; // page-02 ~ page-77
+const TOTAL_PAGES = 75; // page-02 ~ page-76
 const STORAGE_KEY = 'portfolio_slots';
 
 // 영상 파일이 있는 페이지만 여기에 적기
 const VIDEO_PAGES = new Set([
   5, 7, 12, 13, 14, 16, 19, 20, 22, 24,
   31, 32, 33, 36, 38, 42, 46, 48, 52, 54,
-  59, 61, 65, 67, 70, 74, 77
+  59, 61, 65, 67, 70, 73, 74, 76
 ]);
 
 
@@ -82,7 +82,7 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
 
   const numBadge = document.createElement('span');
   numBadge.className = 'slot-num';
-  numBadge.textContent = `${padded} / 78`;
+  numBadge.textContent = `${padded} / 77`;
   slot.appendChild(numBadge);
 
   const zone = document.createElement('div');
