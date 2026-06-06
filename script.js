@@ -5,9 +5,9 @@
   if (!target || !cursor) return;
 
   const TEXT = 'Portfolio';
-  const CHAR_SPEED = 85;
-  const START_DELAY = 450;
-  const END_PAUSE = 700;
+  const CHAR_SPEED = 110;
+  const START_DELAY = 600;
+  const END_PAUSE = 600;
 
   function typeInto(el, text) {
     return new Promise((resolve) => {
