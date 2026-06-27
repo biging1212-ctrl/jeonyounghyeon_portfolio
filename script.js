@@ -53,8 +53,8 @@
 })();
 
 // ── Config ──
-const TOTAL_PAGES = 88; // pages 2–89 (page 90 = closing HTML)
-const FINAL_PAGE_TOTAL = 90;
+const TOTAL_PAGES = 77; // pages 2–78 (page 79 = closing HTML)
+const FINAL_PAGE_TOTAL = 79;
 const STORAGE_KEY = 'portfolio_slots';
 
 // ── Load saved slots from localStorage ──
@@ -72,12 +72,12 @@ const section = document.getElementById('portfolio');
 const saved   = loadSaved();
 
 for (let i = 1; i <= TOTAL_PAGES; i++) {
-  const pageNum = i + 1; // pages 2–58
+  const pageNum = i + 1; // pages 2–78
   const slot    = document.createElement('div');
   slot.className   = 'portfolio-slot';
   slot.dataset.index = i;
 
-  // 모든 페이지에 이동용 id 부여: page-02, page-03, page-18 ...
+  // 모든 페이지에 이동용 id 부여: page-02, page-03, page-16 ...
 slot.id = `page-${String(pageNum).padStart(2, '0')}`;
 
   // page number badge
@@ -102,32 +102,6 @@ if (pageNum === 2) {
   continue;
 }
   
-// ── PAGE 50: YouTube Video ──
-if (pageNum === 50) {
-  slot.classList.add('youtube-page');
-
-  const videoWrap = document.createElement('div');
-  videoWrap.className = 'youtube-video-wrap';
-
-  const iframe = document.createElement('iframe');
-
-  iframe.src =
-    'https://www.youtube-nocookie.com/embed/9JKTAvEiiZU?rel=0&playsinline=1';
-
-  iframe.title = 'Portfolio YouTube Video';
-
-  iframe.allow =
-    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-
-  iframe.allowFullscreen = true;
-
-  videoWrap.appendChild(iframe);
-  slot.appendChild(videoWrap);
-
-  section.appendChild(slot);
-
-  continue;
-}
   
   // upload zone
   const zone = document.createElement('div');
