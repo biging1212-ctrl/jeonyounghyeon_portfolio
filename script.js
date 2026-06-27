@@ -379,8 +379,8 @@ function addProjectIndex(slot) {
   const projects = [
     {
       num: '01',
-      title: 'TIDE',
-      desc: 'Ai Branding / Product',
+      title: 'BPT',
+      desc: 'Rebranding',
       image: 'assets/images/project-01.png',
       target: '#page-03',
       imgX: 200,
@@ -388,46 +388,46 @@ function addProjectIndex(slot) {
     },
     {
       num: '02',
-      title: 'DAYMINE',
-      desc: 'Branding / Product',
+      title: 'TIDE',
+      desc: 'Ai Branding / Product',
       image: 'assets/images/project-02.png',
-      target: '#page-18',
+      target: '#page-16',
       imgX: 469,
       textX: 469
     },
     {
       num: '03',
-      title: 'WINKLE',
-      desc: 'Branding / Product / Character',
+      title: 'KIMCHI SAUCE',
+      desc: 'Product Graphic / Retail package',
       image: 'assets/images/project-03.png',
-      target: '#page-36',
+      target: '#page-31',
       imgX: 738,
       textX: 738
     },
     {
       num: '04',
-      title: 'KIMCHI SAUCE',
-      desc: 'Product / Retail',
+      title: '한국소방안전원',
+      desc: 'Campaign / Bx',
       image: 'assets/images/project-04.png',
-      target: '#page-54',
+      target: '#page-43',
       imgX: 1007,
       textX: 1007
     },
     {
       num: '05',
-      title: 'BPT',
-      desc: 'Rebranding',
+      title: '삼쩜삼',
+      desc: 'Pop-up store',
       image: 'assets/images/project-05.png',
-      target: '#page-66',
+      target: '#page-50',
       imgX: 1276,
       textX: 1276
     },
     {
       num: '06',
-      title: 'BINGGRAE',
-      desc: 'Pop-up store',
+      title: 'DAYMINE',
+      desc: 'Branding / Product',
       image: 'assets/images/project-06.png',
-      target: '#page-79',
+      target: '#page-61',
       imgX: 1546,
       textX: 1545
     }
