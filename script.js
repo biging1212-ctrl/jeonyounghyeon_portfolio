@@ -53,8 +53,8 @@
 })();
 
 // ── Config ──
-const TOTAL_PAGES = 55; // pages 2–56 (page 57 = closing HTML)
-const FINAL_PAGE_TOTAL = 57;
+const TOTAL_PAGES = 69; // pages 2–70 (page 71 = closing HTML)
+const FINAL_PAGE_TOTAL = 71;
 const STORAGE_KEY = 'portfolio_slots';
 
 const VIDEO_PAGES = new Set([
@@ -374,8 +374,8 @@ function addProjectIndex(slot) {
   const projects = [
     {
       num: '01',
-      title: '삼쩜삼',
-      desc: 'Pop-up store',
+      title: 'DAYMINE',
+      desc: 'Branding',
       image: 'assets/images/project-01.png',
       target: '#page-03',
       imgX: 220,
@@ -383,37 +383,37 @@ function addProjectIndex(slot) {
     },
     {
       num: '02',
-      title: 'BPT',
-      desc: 'Rebranding',
+      title: 'TIDE',
+      desc: 'Branding',
       image: 'assets/images/project-02.png',
-      target: '#page-14',
+      target: '#page-18',
       imgX: 542,
       textX: 542
     },
     {
       num: '03',
-      title: '푸본현대생명',
-      desc: 'Sns Content',
+      title: 'BPT',
+      desc: 'Rebranding (Commercial work)',
       image: 'assets/images/project-03.png',
-      target: '#page-26',
+      target: '#page-34',
       imgX: 864,
       textX: 864
     },
     {
       num: '04',
-      title: 'ORION',
-      desc: 'Sns Content',
+      title: 'BINGGRAE',
+      desc: 'Pop-up store (Commercial work)',
       image: 'assets/images/project-04.png',
-      target: '#page-35',
+      target: '#page-46',
       imgX: 1186,
       textX: 1186
     },
     {
       num: '05',
-      title: 'DAYMINE',
-      desc: 'Branding / Product',
+      title: 'IM BANK',
+      desc: 'Bx / Content (Commercial work)',
       image: 'assets/images/project-05.png',
-      target: '#page-42',
+      target: '#page-57',
       imgX: 1508,
       textX: 1508
     }
