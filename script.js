@@ -58,10 +58,10 @@ const FINAL_PAGE_TOTAL = 71;
 const STORAGE_KEY = 'portfolio_slots';
 
 const VIDEO_PAGES = new Set([
-  5, 7, 11, 13, 17, 21,
-  24, 25, 30, 31, 32, 33,
-  34, 37, 38, 39,
-  46, 47, 51
+  6, 7, 14, 19, 28,
+  37, 41, 44, 45, 47, 50,
+  51, 53, 55, 58,
+  61, 64, 65, 68, 70
 ]);
 
 // ── Load saved slots from localStorage ──
