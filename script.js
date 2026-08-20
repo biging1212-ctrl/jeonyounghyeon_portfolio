@@ -58,10 +58,10 @@ const FINAL_PAGE_TOTAL = 71;
 const STORAGE_KEY = 'portfolio_slots';
 
 const VIDEO_PAGES = new Set([
-  6, 7, 14, 19, 28,
-  37, 41, 44, 45, 47, 50,
-  51, 53, 55, 58,
-  61, 64, 65, 68, 70
+  4, 9, 19, 24, 25, 29,
+  32, 38, 40, 44, 48,
+  52, 55, 56, 59,
+  60, 61
 ]);
 
 // ── Load saved slots from localStorage ──
@@ -93,7 +93,7 @@ slot.id = `page-${String(pageNum).padStart(2, '0')}`;
   numBadge.textContent = `${String(pageNum).padStart(2, '0')} / ${FINAL_PAGE_TOTAL}`;
   slot.appendChild(numBadge);
 
-  // ── PAGE 02: Project Index ──
+    // ── PAGE 02: Project Index ──
 if (pageNum === 2) {
   slot.classList.add('project-index-page');
 
@@ -373,70 +373,183 @@ trackedSections.forEach((s) => navObserver.observe(s));
 function addProjectIndex(slot) {
   const projects = [
     {
-      num: '01',
-      title: 'DAYMINE',
-      desc: 'Branding',
+      num: '(01)',
+      title: 'TIDE',
+      desc: 'Beauty Tech Branding',
       image: 'assets/images/project-01.png',
       target: '#page-03',
-      imgX: 220,
-      textX: 220
+
+      imgX: 200,
+      imgY: 401,
+      imgW: 249,
+      imgH: 263,
+
+      numX: 308,
+      numY: 366,
+
+      titleX: 306,
+      titleY: 686,
+
+      descX: 250,
+      descY: 710
     },
+
     {
-      num: '02',
-      title: 'TIDE',
-      desc: 'Branding',
+      num: '(02)',
+      title: 'DAYMINE',
+      desc: 'Health Care Branding',
       image: 'assets/images/project-02.png',
-      target: '#page-18',
-      imgX: 542,
-      textX: 542
+      target: '#page-19',
+
+      imgX: 519,
+      imgY: 401,
+      imgW: 249,
+      imgH: 405,
+
+      numX: 626,
+      numY: 366,
+
+      titleX: 605,
+      titleY: 828,
+
+      descX: 569,
+      descY: 852
     },
+
     {
-      num: '03',
-      title: 'BPT',
-      desc: 'Rebranding (Commercial work)',
+      num: '(03)',
+      title: '3.3',
+      desc: 'Pop - Up Store',
       image: 'assets/images/project-03.png',
       target: '#page-34',
-      imgX: 864,
-      textX: 864
+
+      imgX: 836,
+      imgY: 401,
+      imgW: 249,
+      imgH: 263,
+
+      numX: 944,
+      numY: 366,
+
+      titleX: 949,
+      titleY: 686,
+
+      descX: 911,
+      descY: 710
     },
+
     {
-      num: '04',
-      title: 'BINGGRAE',
-      desc: 'Pop-up store (Commercial work)',
+      num: '(04)',
+      title: 'ORION',
+      desc: 'Promotion Contents',
       image: 'assets/images/project-04.png',
-      target: '#page-46',
-      imgX: 1186,
-      textX: 1186
+      target: '#page-43',
+
+      imgX: 1155,
+      imgY: 401,
+      imgW: 249,
+      imgH: 348,
+
+      numX: 1262,
+      numY: 366,
+
+      titleX: 1251,
+      titleY: 771,
+
+      descX: 1208,
+      descY: 795
     },
+
     {
-      num: '05',
-      title: 'IM BANK',
-      desc: 'Bx / Content (Commercial work)',
+      num: '(05)',
+      title: 'BINGGRAE',
+      desc: 'Pop - Up Store',
       image: 'assets/images/project-05.png',
-      target: '#page-57',
-      imgX: 1508,
-      textX: 1508
+      target: '#page-49',
+
+      imgX: 1472,
+      imgY: 401,
+      imgW: 249,
+      imgH: 263,
+
+      numX: 1579,
+      numY: 366,
+
+      titleX: 1552,
+      titleY: 686,
+
+      descX: 1546,
+      descY: 710
     }
   ];
+
 
   const layer = document.createElement('div');
   layer.className = 'page02-project-layer';
 
+
+  // 1920 × 1080 Figma 좌표 → 반응형 % 좌표
+  const x = (value) => `${(value / 1920) * 100}%`;
+  const y = (value) => `${(value / 1080) * 100}%`;
+
+
   projects.forEach((project) => {
-    const imgLeft = `${(project.imgX / 1920) * 100}%`;
-    const textLeft = `${(project.textX / 1920) * 100}%`;
 
     layer.innerHTML += `
-      <span class="page02-text page02-num" style="left:${textLeft};">${project.num}</span>
 
-      <a class="page02-thumb" href="${project.target}" style="left:${imgLeft};">
+      <!-- 프로젝트 번호 -->
+      <span
+        class="page02-text page02-num"
+        style="
+          left:${x(project.numX)};
+          top:${y(project.numY)};
+        "
+      >
+        ${project.num}
+      </span>
+
+
+      <!-- 프로젝트 이미지 -->
+      <a
+        class="page02-thumb"
+        href="${project.target}"
+        style="
+          left:${x(project.imgX)};
+          top:${y(project.imgY)};
+          width:${x(project.imgW)};
+          height:${y(project.imgH)};
+        "
+      >
         <img src="${project.image}" alt="" />
       </a>
 
-      <span class="page02-text page02-title" style="left:${textLeft};">${project.title}</span>
-      <span class="page02-text page02-desc" style="left:${textLeft};">${project.desc}</span>
+
+      <!-- 프로젝트명 -->
+      <span
+        class="page02-text page02-title"
+        style="
+          left:${x(project.titleX)};
+          top:${y(project.titleY)};
+        "
+      >
+        ${project.title}
+      </span>
+
+
+      <!-- 프로젝트 설명 -->
+      <span
+        class="page02-text page02-desc"
+        style="
+          left:${x(project.descX)};
+          top:${y(project.descY)};
+        "
+      >
+        ${project.desc}
+      </span>
+
     `;
   });
+
 
   slot.appendChild(layer);
 }
