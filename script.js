@@ -470,7 +470,7 @@ function addProjectIndex(slot) {
     {
       num: '(03)',
       title: '3.3',
-      desc: 'Pop - Up Store',
+      desc: 'Pop - Up Store / 실무',
       image: 'assets/images/project-03.png',
       target: '#page-34',
 
@@ -492,7 +492,7 @@ function addProjectIndex(slot) {
     {
       num: '(04)',
       title: 'ORION',
-      desc: 'Promotion Contents',
+      desc: 'Promotion Contents / 실무',
       image: 'assets/images/project-04.png',
       target: '#page-43',
 
@@ -514,7 +514,7 @@ function addProjectIndex(slot) {
     {
       num: '(05)',
       title: 'BINGGRAE',
-      desc: 'Pop - Up Store',
+      desc: 'Pop - Up Store / 실무',
       image: 'assets/images/project-05.png',
       target: '#page-49',
 
