@@ -207,21 +207,7 @@ if (pageNum === 17) {
     }
 
     if (item.type === 'video') {
-      const testVideo = document.createElement('video');
-
-      testVideo.onloadedmetadata = () => {
-        testVideo.remove();
-        renderMedia(slot, zone, 'video', item.src);
-      };
-
-      testVideo.onerror = () => {
-        testVideo.remove();
-        tryCandidate(index + 1);
-      };
-
-      testVideo.preload = 'metadata';
-      testVideo.src = item.src;
-      testVideo.load();
+      renderMedia(slot, zone, 'video', item.src);
     }
   }
 
