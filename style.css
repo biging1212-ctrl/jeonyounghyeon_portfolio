@@ -58,21 +58,31 @@ img, video { display: block; width: 100%; }
 /* ── NAV ── */
 .nav {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+
   z-index: 100;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px var(--col-margin);
-  background: #000000;
-}
 
-/* 첫 페이지에서는 숨김 */
+  padding: 18px var(--col-margin);
+
+  background: #000000;
+
+  /* page-01에서는 숨김 */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+
   transform: translateY(-100%);
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s ease;
 }
 
 .nav.show-nav {
@@ -119,8 +129,6 @@ img, video { display: block; width: 100%; }
   color: #ffffff;
 
   overflow: hidden;
-
-  /* 이 페이지의 크기를 기준으로 내부 요소 크기 계산 */
   container-type: inline-size;
 }
 
@@ -163,14 +171,6 @@ img, video { display: block; width: 100%; }
 
 .hero-bg-zone.has-media .hero-bg-label { display: none; }
 
-.hero-bg-media {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
 
 /* replace button — shows on hover when image is set */
 .hero-bg-replace {
@@ -808,6 +808,7 @@ img, video { display: block; width: 100%; }
 /* 공통 타이포 */
 .page02-text {
   position: absolute;
+  display: block;
   font-family: var(--font);
 
   font-size: min(14px, 0.729167cqw);
