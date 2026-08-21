@@ -52,6 +52,30 @@
   run();
 })();
 
+// ── Hide NAV on first page ──
+(function initHeroNav() {
+  const nav = document.querySelector('.nav');
+  const hero = document.getElementById('home');
+
+  if (!nav || !hero) return;
+
+  function updateNav() {
+    const heroBottom = hero.getBoundingClientRect().bottom;
+
+    // 첫 페이지가 화면에서 완전히 지나가면 NAV 표시
+    if (heroBottom <= 0) {
+      nav.classList.add('show-nav');
+    } else {
+      nav.classList.remove('show-nav');
+    }
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  window.addEventListener('resize', updateNav);
+
+  updateNav();
+})();
+
 // ── Config ──
 const TOTAL_PAGES = 61; // pages 2–62 (page 63 = closing HTML)
 const FINAL_PAGE_TOTAL = 63;
