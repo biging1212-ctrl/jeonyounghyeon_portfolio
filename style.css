@@ -619,9 +619,8 @@ img, video { display: block; width: 100%; }
 
 .closing-left {
   position: absolute;
-
-  left: 10.4167%;   /* 200 / 1920 */
-  top: 14.8%;       /* 약 y: 148 */
+  left: 10.4167%;   /* 200px */
+  top: 16%;         /* 160 / 1000 */
 }
 
 .closing-title {
@@ -658,18 +657,16 @@ img, video { display: block; width: 100%; }
 
 .closing-right {
   position: absolute;
-
-  right: 10.4167%;  /* 200 / 1920 */
-  top: 79.2%;       /* 약 y: 792 */
-
+  right: 10.4167%;  /* 200px */
+  bottom: 12%;      /* 120 / 1000 */
   text-align: right;
 }
 
 .closing-name-ko {
   font-family: 'Pretendard', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
 
-  font-size: min(36px, 1.875cqw);
+  font-size: min(31px, 1.614583cqw);
   line-height: 1;
 
   color: #ffffff;
@@ -679,9 +676,9 @@ img, video { display: block; width: 100%; }
 
 .closing-email {
   font-family: var(--font);
-  font-weight: 300;
+  font-weight: 200;
 
-  font-size: min(30px, 1.5625cqw);
+  font-size: min(25px, 1.302083cqw);
   line-height: 1;
 
   color: #ffffff;
@@ -691,9 +688,9 @@ img, video { display: block; width: 100%; }
 
 .closing-phone {
   font-family: var(--font);
-  font-weight: 300;
+  font-weight: 200;
 
-  font-size: min(30px, 1.5625cqw);
+  font-size: min(25px, 1.302083cqw);
   line-height: 1;
 
   color: #ffffff;
