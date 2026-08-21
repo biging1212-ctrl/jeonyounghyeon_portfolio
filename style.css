@@ -62,46 +62,100 @@ img, video { display: block; width: 100%; }
   left: 0;
   right: 0;
 
+  height: var(--nav-h);
   z-index: 100;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 18px var(--col-margin);
 
   background: #000000;
 
-  /* page-01에서는 숨김 */
+  /* Page 01에서는 숨김 */
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 
-  transform: translateY(-100%);
-
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease,
-    visibility 0.25s ease;
+  transition: opacity 0.2s ease;
 }
 
+
+/* 이름 이동이 완료되면 NAV 표시 */
 .nav.show-nav {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transform: translateY(0);
 }
 
-.nav-name {
-  font-size: clamp(9px, 0.625vw, 12px);
-  font-weight: 500;
-  letter-spacing: 0.12em;
+
+/* NAV 중앙 이름 */
+.nav-home-name {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 14px;
+
+  letter-spacing: -0.02em;
+  line-height: 1;
+
+  color: #ffffff;
+
+  white-space: nowrap;
+
+  /* flying-name이 도착하기 전까지 숨김 */
+  opacity: 0;
+
+  transition: opacity 0.15s ease;
 }
 
+
+/* 이동 완료 후 실제 NAV 이름 표시 */
+.nav.show-nav .nav-home-name {
+  opacity: 1;
+}
+
+
+/* 오른쪽 메뉴 */
 .nav-links {
+  position: absolute;
+
+  right: var(--col-margin);
+  top: 50%;
+  transform: translateY(-50%);
+
   display: flex;
   gap: clamp(16px, 1.875vw, 36px);
+
   list-style: none;
+}
+
+
+/* ── Page 01 이름 → NAV 이동용 이름 ── */
+.flying-name {
+  position: fixed;
+
+  left: 0;
+  top: 0;
+
+  z-index: 150;
+
+  font-family: var(--font);
+  font-weight: 800;
+
+  letter-spacing: -0.02em;
+  line-height: 1;
+
+  color: #ffffff;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+  opacity: 0;
+
+  transform-origin: center center;
+
+  will-change: left, top, transform, opacity;
 }
 
 .nav-links a {
