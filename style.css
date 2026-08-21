@@ -592,120 +592,71 @@ img, video { display: block; width: 100%; }
 
 
 /* ── Page 65: Closing ── */
-/*
-  Figma 1920×1080 기준
-  vw = px ÷ 1920 × 100
-  vh = px ÷ 1080 × 100
-*/
+/* 1920 × 850 기준 */
 .closing-page {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000000;
+  max-width: 1920px;
+  aspect-ratio: 1920 / 850;
+  margin: 0 auto;
+
+  background: #111111;
+  color: #ffffff;
   overflow: hidden;
-}
 
-.closing-page span {
-  position: absolute;
   font-family: var(--font);
+  container-type: inline-size;
 }
 
-.cl-name {
-  /* 50px @ 1920 = 2.604vw */
-  font-size: clamp(18px, 2.604vw, 50px);
-  font-weight: 700;
-  color: #fff;
+.closing-inner {
+  position: absolute;
+  inset: 0;
 }
 
-.cl-title {
-  font-size: clamp(18px, 2.604vw, 50px);
-  font-weight: 700;
-  line-height: 1.17;
-  color: #fff;
-}
 
-.cl-sub {
-  /* 20px @ 1920 = 1.042vw */
-  font-size: clamp(9px, 1.042vw, 20px);
-  font-weight: 700;
-  line-height: 1.3;
-  color: #fff;
-  text-transform: uppercase;
-}
+/* 상단 큰 텍스트 */
+.closing-name,
+.closing-role {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 
-.cl-label {
-  font-size: clamp(9px, 1.042vw, 20px);
-  font-weight: 600;
-  line-height: 1.3;
-  color: #999999;
-}
-
-.cl-value {
-  font-size: clamp(9px, 1.042vw, 20px);
-  font-weight: 600;
-  line-height: 1.3;
-  color: #fff;
-}
-
-/* ── Download Section ── */
-.download-section {
-  background: #F8F6F6;
-  color: var(--black);
-  width: 100%;
-  padding: 80px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.download-inner {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(16px, 2vw, 36px);
-}
-
-.download-label {
-  font-size: clamp(9px, 0.625vw, 12px);
-  font-weight: 500;
-  letter-spacing: 0.25em;
-  opacity: 0.4;
-  text-transform: uppercase;
-}
-
-.download-title {
-  font-size: clamp(24px, 3.125vw, 60px);
-  font-weight: 800;
-  line-height: 1.2;
+  font-family: var(--font);
+  font-weight: 700; /* Fustat Bold */
+  font-size: min(100px, 5.208333cqw);
   letter-spacing: -0.02em;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.download-desc {
-  font-size: clamp(10px, 0.729vw, 14px);
-  opacity: 0.5;
-  line-height: 1.6;
+.closing-name {
+  top: 25.5%;
 }
 
-.download-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: clamp(10px, 0.625vw, 12px);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  border: 1.5px solid var(--black);
-  padding: clamp(12px, 1.25vw, 24px) clamp(24px, 2.5vw, 48px);
-  transition: background 0.2s, color 0.2s;
+.closing-role {
+  top: 38.8%;
 }
 
-.download-btn:hover {
-  background: var(--black);
-  color: var(--white);
-}
 
-.download-btn svg { flex-shrink: 0; }
+/* 하단 작은 문장 */
+.closing-message {
+  position: absolute;
+  left: 50%;
+  top: 64.9%;
+  transform: translateX(-50%);
+
+  font-family: var(--font);
+  font-weight: 300; /* Fustat Light */
+  font-size: min(25px, 1.302083cqw);
+  letter-spacing: 0;
+  line-height: 1.35;
+  color: #ffffff;
+
+  text-align: center;
+  white-space: nowrap;
+}
 
 /* ── Footer ── */
 .footer {
