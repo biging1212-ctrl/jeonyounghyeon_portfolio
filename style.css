@@ -591,71 +591,112 @@ img, video { display: block; width: 100%; }
 }
 
 
-/* ── Page 65: Closing ── */
-/* 1920 × 850 기준 */
+/* ── Closing Page ── */
+/* Figma canvas: 1920 × 1000 */
+
 .closing-page {
   position: relative;
+
   width: 100%;
   max-width: 1920px;
-  aspect-ratio: 1920 / 850;
+  aspect-ratio: 1920 / 1000;
+
   margin: 0 auto;
 
-  background: #111111;
+  background: #000000;
   color: #ffffff;
+
   overflow: hidden;
 
   font-family: var(--font);
   container-type: inline-size;
 }
 
-.closing-inner {
+
+/* =========================
+   LEFT TOP
+========================= */
+
+.closing-left {
   position: absolute;
-  inset: 0;
+
+  left: 10.4167%;   /* 200 / 1920 */
+  top: 14.8%;       /* 약 y: 148 */
 }
 
-
-/* 상단 큰 텍스트 */
-.closing-name,
-.closing-role {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-
+.closing-title {
   font-family: var(--font);
   font-weight: 700; /* Fustat Bold */
-  font-size: min(100px, 5.208333cqw);
-  letter-spacing: -0.02em;
+
+  font-size: min(70px, 3.645833cqw);
   line-height: 1;
+  letter-spacing: -0.02em;
+
   color: #ffffff;
-  text-align: center;
   white-space: nowrap;
 }
 
-.closing-name {
-  top: 25.5%;
-}
+.closing-body {
+  margin-top: 67px;
 
-.closing-role {
-  top: 38.8%;
-}
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 400;
 
-
-/* 하단 작은 문장 */
-.closing-message {
-  position: absolute;
-  left: 50%;
-  top: 64.9%;
-  transform: translateX(-50%);
-
-  font-family: var(--font);
-  font-weight: 300; /* Fustat Light */
-  font-size: min(25px, 1.302083cqw);
+  font-size: min(20px, 1.041667cqw);
+  line-height: 1.7;
   letter-spacing: 0;
-  line-height: 1.35;
+
+  color: #ffffff;
+  text-align: left;
+  white-space: nowrap;
+}
+
+
+/* =========================
+   RIGHT BOTTOM
+========================= */
+
+.closing-right {
+  position: absolute;
+
+  right: 10.4167%;  /* 200 / 1920 */
+  top: 79.2%;       /* 약 y: 792 */
+
+  text-align: right;
+}
+
+.closing-name-ko {
+  font-family: 'Pretendard', sans-serif;
+  font-weight: 700;
+
+  font-size: min(36px, 1.875cqw);
+  line-height: 1;
+
   color: #ffffff;
 
-  text-align: center;
-  white-space: nowrap;
+  margin-bottom: 28px;
+}
+
+.closing-email {
+  font-family: var(--font);
+  font-weight: 300;
+
+  font-size: min(30px, 1.5625cqw);
+  line-height: 1;
+
+  color: #ffffff;
+
+  margin-bottom: 24px;
+}
+
+.closing-phone {
+  font-family: var(--font);
+  font-weight: 300;
+
+  font-size: min(30px, 1.5625cqw);
+  line-height: 1;
+
+  color: #ffffff;
 }
 
 /* ── Footer ── */
