@@ -67,6 +67,21 @@ img, video { display: block; width: 100%; }
   background: #000000;
 }
 
+/* 첫 페이지에서는 숨김 */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-100%);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+.nav.show-nav {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
 .nav-name {
   font-size: clamp(9px, 0.625vw, 12px);
   font-weight: 500;
