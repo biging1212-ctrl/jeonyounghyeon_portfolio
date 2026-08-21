@@ -422,7 +422,7 @@ function addProjectIndex(slot) {
     {
       num: '(01)',
       title: 'WINKLE',
-      desc: 'DRINK Branding',
+      desc: 'Beverage Branding',
       image: 'assets/images/project-01.png',
       target: '#page-03',
 
@@ -619,3 +619,164 @@ function addProjectIndex(slot) {
 
   slot.appendChild(layer);
 }
+
+// ── Hero name → NAV center scroll animation ──
+
+(function initNameToNavAnimation() {
+
+  const hero = document.getElementById('home');
+  const source = document.querySelector('.hero-bottom-name');
+  const target = document.querySelector('.nav-home-name');
+  const flying = document.getElementById('flying-name');
+  const nav = document.querySelector('.nav');
+
+  if (!hero || !source || !target || !flying || !nav) return;
+
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+
+  function update() {
+
+    const heroHeight = hero.offsetHeight;
+
+    /*
+      애니메이션 시작:
+      Page 01의 약 45% 스크롤한 시점
+
+      애니메이션 종료:
+      Page 01이 거의 끝나는 시점
+    */
+    const startScroll = heroHeight * 0.45;
+    const endScroll = heroHeight * 0.92;
+
+    const scrollY = window.scrollY;
+
+    const progress = clamp(
+      (scrollY - startScroll) /
+      (endScroll - startScroll),
+      0,
+      1
+    );
+
+
+    const sourceRect = source.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+
+    /*
+      sourceRect는 스크롤하면서 움직이기 때문에
+      문서상의 원래 위치로 보정
+    */
+    const sourceX =
+      sourceRect.left +
+      sourceRect.width / 2;
+
+    const sourceY =
+      sourceRect.top +
+      sourceRect.height / 2;
+
+
+    const targetX =
+      targetRect.left +
+      targetRect.width / 2;
+
+    const targetY =
+      targetRect.top +
+      targetRect.height / 2;
+
+
+    /*
+      현재 위치를 source → target 사이에서 보간
+    */
+    const currentX =
+      sourceX +
+      (targetX - sourceX) * progress;
+
+    const currentY =
+      sourceY +
+      (targetY - sourceY) * progress;
+
+
+    /*
+      90px → 약 14px
+    */
+    const startScale = 1;
+    const endScale = 14 / 90;
+
+    const scale =
+      startScale +
+      (endScale - startScale) * progress;
+
+
+    flying.style.left = `${currentX}px`;
+    flying.style.top = `${currentY}px`;
+
+    flying.style.transform =
+      `translate(-50%, -50%) scale(${scale})`;
+
+
+    /*
+      시작하기 전에는 원본 이름 표시
+    */
+    if (progress === 0) {
+
+      source.style.opacity = '1';
+
+      flying.style.opacity = '0';
+
+      nav.classList.remove('show-nav');
+
+      return;
+    }
+
+
+    /*
+      이동 중
+    */
+    if (progress > 0 && progress < 1) {
+
+      source.style.opacity = '0';
+
+      flying.style.opacity = '1';
+
+      nav.classList.remove('show-nav');
+
+      return;
+    }
+
+
+    /*
+      이동 완료 → flying name 숨기고
+      NAV의 실제 이름 표시
+    */
+    source.style.opacity = '0';
+    flying.style.opacity = '0';
+
+    nav.classList.add('show-nav');
+
+  }
+
+
+  window.addEventListener(
+    'scroll',
+    update,
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'resize',
+    update
+  );
+
+  window.addEventListener(
+    'load',
+    update
+  );
+
+
+  update();
+
+})();
