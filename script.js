@@ -421,8 +421,8 @@ function addProjectIndex(slot) {
   const projects = [
     {
       num: '(01)',
-      title: 'TIDE',
-      desc: 'Beauty Tech Branding',
+      title: 'WINKLE',
+      desc: 'DRINK Branding',
       image: 'assets/images/project-01.png',
       target: '#page-03',
 
@@ -484,8 +484,8 @@ function addProjectIndex(slot) {
 
     {
       num: '(04)',
-      title: 'ORION',
-      desc: 'Promotion Contents / 실무',
+      title: 'BPT',
+      desc: 'Rebranding / 실무',
       image: 'assets/images/project-04.png',
       target: '#page-43',
 
@@ -506,8 +506,8 @@ function addProjectIndex(slot) {
 
     {
       num: '(05)',
-      title: 'BINGGRAE',
-      desc: 'Pop - Up Store / 실무',
+      title: 'ORION',
+      desc: 'Promotion Contents / 실무',
       image: 'assets/images/project-05.png',
       target: '#page-49',
 
