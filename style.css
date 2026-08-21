@@ -93,7 +93,7 @@ img, video { display: block; width: 100%; }
   transform: translate(-50%, -50%);
 
   font-family: var(--font);
-  font-weight: 800;
+  font-weight: 700;
   font-size: 14px;
 
   letter-spacing: -0.02em;
@@ -141,7 +141,7 @@ img, video { display: block; width: 100%; }
   z-index: 150;
 
   font-family: var(--font);
-  font-weight: 800;
+  font-weight: 700;
 
   letter-spacing: -0.02em;
   line-height: 1;
