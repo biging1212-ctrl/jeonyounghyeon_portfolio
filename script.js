@@ -537,6 +537,21 @@ function addProjectIndex(slot) {
 
   const layer = document.createElement('div');
   layer.className = 'page02-project-layer';
+  
+  layer.innerHTML += `
+    <!-- 좌상단 / 우상단 -->
+    <div class="page02-kicker page02-kicker-left">INTRODUCE</div>
+    <div class="page02-kicker page02-kicker-right">CONTENTS</div>
+
+    <!-- 중앙 메인 문구 -->
+    <div class="page02-headline">
+      <span class="light">브랜드의 </span><span class="semibold">지금을 읽고,</span><br>
+      <span class="semibold">다음을</span><span class="light"> 그리는 디자이너 전영현입니다.</span>
+    </div>
+
+    <!-- 연락처 -->
+    <div class="page02-contact">010.4079.5374 / biging1212@gmail.com</div>
+  `;
 
 
   // 1920 × 1080 Figma 좌표 → 반응형 % 좌표
