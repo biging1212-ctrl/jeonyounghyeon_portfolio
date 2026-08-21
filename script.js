@@ -431,13 +431,10 @@ function addProjectIndex(slot) {
       imgW: 249,
       imgH: 263,
 
-      numX: 308,
       numY: 366,
 
-      titleX: 306,
       titleY: 686,
 
-      descX: 250,
       descY: 710
     },
 
