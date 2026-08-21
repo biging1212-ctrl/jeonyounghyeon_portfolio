@@ -620,17 +620,32 @@ function addProjectIndex(slot) {
   slot.appendChild(layer);
 }
 
-// ── Hero name → NAV center scroll animation ──
-
+// ── Page 01 Name → NAV Scroll Animation ──
 (function initNameToNavAnimation() {
 
   const hero = document.getElementById('home');
   const source = document.querySelector('.hero-bottom-name');
-  const target = document.querySelector('.nav-home-name');
-  const flying = document.getElementById('flying-name');
   const nav = document.querySelector('.nav');
+  const target = document.querySelector('.nav-home-name');
 
-  if (!hero || !source || !target || !flying || !nav) return;
+  if (!hero || !source || !nav || !target) return;
+
+
+  // 실제로 움직일 이름 생성
+  const flying = document.createElement('div');
+  flying.className = 'flying-name';
+
+  // Page 01 이름과 동일하게 시작
+  flying.textContent = '( JEON YOUNG HYEON )';
+
+  document.body.appendChild(flying);
+
+
+  let sourceDocX = 0;
+  let sourceDocY = 0;
+
+  let sourceFontSize = 90;
+  let targetFontSize = 14;
 
 
   function clamp(value, min, max) {
@@ -638,93 +653,147 @@ function addProjectIndex(slot) {
   }
 
 
-  function update() {
+  function lerp(start, end, progress) {
+    return start + (end - start) * progress;
+  }
 
-    const heroHeight = hero.offsetHeight;
 
-    /*
-      애니메이션 시작:
-      Page 01의 약 45% 스크롤한 시점
-
-      애니메이션 종료:
-      Page 01이 거의 끝나는 시점
-    */
-    const startScroll = heroHeight * 0.45;
-    const endScroll = heroHeight * 0.92;
-
-    const scrollY = window.scrollY;
-
-    const progress = clamp(
-      (scrollY - startScroll) /
-      (endScroll - startScroll),
-      0,
-      1
-    );
-
+  function measure() {
 
     const sourceRect = source.getBoundingClientRect();
-    const targetRect = target.getBoundingClientRect();
 
-
-    /*
-      sourceRect는 스크롤하면서 움직이기 때문에
-      문서상의 원래 위치로 보정
-    */
-    const sourceX =
+    // Page 01 이름의 문서상 중앙 위치
+    sourceDocX =
       sourceRect.left +
+      window.scrollX +
       sourceRect.width / 2;
 
-    const sourceY =
+    sourceDocY =
       sourceRect.top +
+      window.scrollY +
       sourceRect.height / 2;
 
 
+    sourceFontSize =
+      parseFloat(
+        window.getComputedStyle(source).fontSize
+      );
+
+
+    targetFontSize =
+      parseFloat(
+        window.getComputedStyle(target).fontSize
+      );
+
+  }
+
+
+  function update() {
+
+    const scrollY = window.scrollY;
+    const heroHeight = hero.offsetHeight;
+
+
+    /*
+      애니메이션 시작:
+      Page 01을 약 15% 스크롤했을 때
+    */
+    const startScroll = heroHeight * 0.15;
+
+
+    /*
+      애니메이션 종료:
+      Page 01 끝에 거의 도착했을 때
+    */
+    const endScroll = heroHeight * 0.92;
+
+
+    let progress =
+      (scrollY - startScroll) /
+      (endScroll - startScroll);
+
+
+    progress = clamp(progress, 0, 1);
+
+
+    /*
+      부드러운 easing
+    */
+    const eased =
+      progress * progress * (3 - 2 * progress);
+
+
+    /*
+      원래 Page 01 이름이
+      현재 화면에서 있어야 하는 위치
+    */
+    const naturalSourceX =
+      sourceDocX - window.scrollX;
+
+    const naturalSourceY =
+      sourceDocY - scrollY;
+
+
+    /*
+      NAV 중앙 목표 위치
+    */
     const targetX =
-      targetRect.left +
-      targetRect.width / 2;
+      window.innerWidth / 2;
 
     const targetY =
-      targetRect.top +
-      targetRect.height / 2;
+      nav.offsetHeight / 2;
 
 
     /*
-      현재 위치를 source → target 사이에서 보간
+      위치 이동
     */
     const currentX =
-      sourceX +
-      (targetX - sourceX) * progress;
+      lerp(
+        naturalSourceX,
+        targetX,
+        eased
+      );
+
 
     const currentY =
-      sourceY +
-      (targetY - sourceY) * progress;
+      lerp(
+        naturalSourceY,
+        targetY,
+        eased
+      );
 
 
     /*
-      90px → 약 14px
+      ★ 핵심:
+      90px → 14px를 직접 변화시킴
     */
-    const startScale = 1;
-    const endScale = 14 / 90;
+    const currentFontSize =
+      lerp(
+        sourceFontSize,
+        targetFontSize,
+        eased
+      );
 
-    const scale =
-      startScale +
-      (endScale - startScale) * progress;
 
+    flying.style.left =
+      `${currentX}px`;
 
-    flying.style.left = `${currentX}px`;
-    flying.style.top = `${currentY}px`;
+    flying.style.top =
+      `${currentY}px`;
+
+    flying.style.fontSize =
+      `${currentFontSize}px`;
 
     flying.style.transform =
-      `translate(-50%, -50%) scale(${scale})`;
+      'translate(-50%, -50%)';
 
 
     /*
-      시작하기 전에는 원본 이름 표시
+      아직 애니메이션 시작 전
     */
-    if (progress === 0) {
+    if (progress <= 0) {
 
       source.style.opacity = '1';
-
       flying.style.opacity = '0';
 
       nav.classList.remove('show-nav');
@@ -734,12 +803,11 @@ function addProjectIndex(slot) {
 
 
     /*
-      이동 중
+      애니메이션 진행 중
     */
-    if (progress > 0 && progress < 1) {
+    if (progress < 1) {
 
       source.style.opacity = '0';
-
       flying.style.opacity = '1';
 
       nav.classList.remove('show-nav');
@@ -749,8 +817,7 @@ function addProjectIndex(slot) {
 
 
     /*
-      이동 완료 → flying name 숨기고
-      NAV의 실제 이름 표시
+      NAV에 완전히 도착
     */
     source.style.opacity = '0';
     flying.style.opacity = '0';
@@ -760,23 +827,57 @@ function addProjectIndex(slot) {
   }
 
 
+  let ticking = false;
+
+
+  function requestUpdate() {
+
+    if (ticking) return;
+
+    ticking = true;
+
+
+    requestAnimationFrame(() => {
+
+      update();
+
+      ticking = false;
+
+    });
+
+  }
+
+
   window.addEventListener(
     'scroll',
-    update,
+    requestUpdate,
     { passive: true }
   );
 
+
   window.addEventListener(
     'resize',
-    update
+    () => {
+
+      measure();
+      update();
+
+    }
   );
+
 
   window.addEventListener(
     'load',
-    update
+    () => {
+
+      measure();
+      update();
+
+    }
   );
 
 
+  measure();
   update();
 
 })();
