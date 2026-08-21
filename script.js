@@ -108,6 +108,33 @@ if (pageNum === 2) {
   section.appendChild(slot);
   continue;
 }
+
+  // ── PAGE 17: YouTube Video ──
+if (pageNum === 17) {
+  slot.classList.add('youtube-page');
+
+  const videoWrap = document.createElement('div');
+  videoWrap.className = 'youtube-video-wrap';
+
+  const iframe = document.createElement('iframe');
+
+  iframe.src =
+    'https://www.youtube-nocookie.com/embed/9JKTAvEiiZU?rel=0&playsinline=1';
+
+  iframe.title = 'Portfolio YouTube Video';
+
+  iframe.allow =
+    'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+
+  iframe.allowFullscreen = true;
+
+  videoWrap.appendChild(iframe);
+  slot.appendChild(videoWrap);
+
+  section.appendChild(slot);
+
+  continue;
+}
   
   // upload zone
   const zone = document.createElement('div');
