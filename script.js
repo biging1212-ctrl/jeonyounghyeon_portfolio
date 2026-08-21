@@ -429,7 +429,7 @@ function addProjectIndex(slot) {
       title: 'DAYMINE',
       desc: 'Health Care Branding',
       image: 'assets/images/project-02.png',
-      target: '#page-19',
+      target: '#page-21',
 
       imgX: 519,
       imgY: 401,
@@ -451,7 +451,7 @@ function addProjectIndex(slot) {
       title: '3.3',
       desc: 'Pop - Up Store / 실무',
       image: 'assets/images/project-03.png',
-      target: '#page-34',
+      target: '#page-36',
 
       imgX: 836,
       imgY: 401,
@@ -473,7 +473,7 @@ function addProjectIndex(slot) {
       title: 'BPT',
       desc: 'Rebranding / 실무',
       image: 'assets/images/project-04.png',
-      target: '#page-43',
+      target: '#page-45',
 
       imgX: 1155,
       imgY: 401,
@@ -495,7 +495,7 @@ function addProjectIndex(slot) {
       title: 'ORION',
       desc: 'Promotion Contents / 실무',
       image: 'assets/images/project-05.png',
-      target: '#page-49',
+      target: '#page-57',
 
       imgX: 1472,
       imgY: 401,
