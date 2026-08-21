@@ -551,6 +551,10 @@ function addProjectIndex(slot) {
 
     <!-- 연락처 -->
     <div class="page02-contact">010.4079.5374 / biging1212@gmail.com</div>
+    <div class="page02-guide">
+    *이미지 선택 시,<br>
+    해당 프로젝트로 이동 가능합니다.
+  </div>
   `;
 
 
