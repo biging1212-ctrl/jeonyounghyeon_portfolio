@@ -112,20 +112,16 @@ for (let i = 1; i <= TOTAL_PAGES; i++) {
 slot.id = `page-${String(pageNum).padStart(2, '0')}`;
 
   // page number badge
+// page-02에서는 표시하지 않음
+if (pageNum !== 2) {
   const numBadge = document.createElement('span');
   numBadge.className   = 'slot-num';
   numBadge.textContent = `${String(pageNum).padStart(2, '0')} / ${FINAL_PAGE_TOTAL}`;
   slot.appendChild(numBadge);
-
+}
     // ── PAGE 02: Project Index ──
 if (pageNum === 2) {
   slot.classList.add('project-index-page');
-
-  const bg = document.createElement('img');
-  bg.className = 'project-index-bg loaded';
-  bg.src = 'assets/images/page-02.png';
-  bg.alt = '';
-  slot.appendChild(bg);
 
   addProjectIndex(slot);
 
@@ -571,8 +567,9 @@ function addProjectIndex(slot) {
       <span
         class="page02-text page02-num"
         style="
-          left:${x(project.numX)};
+          left:${x(project.imgX)};
           top:${y(project.numY)};
+          width:${x(project.imgW)};
         "
       >
         ${project.num}
@@ -598,8 +595,9 @@ function addProjectIndex(slot) {
       <span
         class="page02-text page02-title"
         style="
-          left:${x(project.titleX)};
+          left:${x(project.imgX)};
           top:${y(project.titleY)};
+          width:${x(project.imgW)};
         "
       >
         ${project.title}
@@ -610,8 +608,9 @@ function addProjectIndex(slot) {
       <span
         class="page02-text page02-desc"
         style="
-          left:${x(project.descX)};
+          left:${x(project.imgX)};
           top:${y(project.descY)};
+          width:${x(project.imgW)};
         "
       >
         ${project.desc}
