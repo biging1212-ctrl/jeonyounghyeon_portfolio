@@ -1369,3 +1369,101 @@ a.page02-gallery-item:focus-visible {
 #page-57 .page-section-title {
   color: #0369F1;
 }
+
+
+/* ─────────────────────────────
+   PAGE 02 - PROJECT HOVER
+───────────────────────────── */
+
+/* 이미지 영역 */
+.page02-gallery-item {
+  position: absolute;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* 어두운 그라데이션 */
+.page02-gallery-item::after {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.12) 0%,
+    rgba(0, 0, 0, 0.35) 50%,
+    rgba(0, 0, 0, 0.78) 100%
+  );
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 프로젝트 정보 공통 */
+.page02-gallery-info {
+  position: absolute;
+
+  left: 9%;
+  bottom: 7%;
+
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: min(8px, 0.416667cqw);
+
+  color: #ffffff;
+
+  opacity: 0;
+  transform: translateY(6px);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+
+  pointer-events: none;
+}
+
+/* 프로젝트 이름 */
+.page02-gallery-title {
+  font-family: 'Fustat', 'Pretendard', sans-serif;
+
+  font-size: min(20px, 1.041667cqw);
+  font-weight: 600;
+
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+
+  white-space: nowrap;
+}
+
+/* 프로젝트 설명 */
+.page02-gallery-desc {
+  font-family: 'Fustat', 'Pretendard', sans-serif;
+
+  font-size: min(15px, 0.78125cqw);
+  font-weight: 400;
+
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+
+  white-space: nowrap;
+}
+
+/* 마우스를 올린 이미지에만 그라데이션 */
+.page02-gallery-item:hover::after,
+.page02-gallery-item:focus-visible::after {
+  opacity: 1;
+}
+
+/* 마우스를 올린 이미지에만 텍스트 표시 */
+.page02-gallery-item:hover .page02-gallery-info,
+.page02-gallery-item:focus-visible .page02-gallery-info {
+  opacity: 1;
+  transform: translateY(0);
+}
