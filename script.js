@@ -1286,314 +1286,121 @@ const navObserver = new IntersectionObserver(
 
 trackedSections.forEach((s) => navObserver.observe(s));
 
+
 function addProjectIndex(slot) {
 
+  const layer = document.createElement('div');
+  layer.className = 'page02-new-layout';
+
   const projects = [
-
     {
-      title: 'WINKLE',
-      desc: 'BRANDING / PERSONAL',
-      range: '( 03 - 19 )',
-
-      image: 'assets/images/page-02-winkle.png',
-      target: '#page-03',
-
-      barX: 145,
-      barY: 396,
-
-      previewX: 145,
-      previewY: 441
+      name: 'WINKLE',
+      image: 'assets/images/page02-winkle.png',
+      x: 100,
+      y: 304,
+      target: '#page-03'
     },
-
-
     {
-      title: 'LOTTE CHILSUNG',
-      desc: 'SNS CONTENT / 실무',
-      range: '( 20 - 26 )',
-
-      image: 'assets/images/page-02-lotte.png',
-      target: '#page-20',
-
-      barX: 395,
-      barY: 468,
-
-      previewX: 395,
-      previewY: 513
+      name: 'OATERY',
+      image: 'assets/images/page02-oatery.png',
+      x: 796,
+      y: 304,
+      target: null
     },
-
-
     {
-      title: 'KIMCHI SAUCE',
-      desc: 'BRAND RETAIL / PERSONAL',
-      range: '( 27 - 42 )',
-
-      image: 'assets/images/page-02-kimchi.png',
-      target: '#page-27',
-
-      barX: 645,
-      barY: 540,
-
-      previewX: 1326,
-      previewY: 340,
+      name: 'DAYMINE',
+      image: 'assets/images/page02-daymine.png',
+      x: 1492,
+      y: 304,
+      target: null
     },
-
-
     {
-      title: 'ORION',
-      desc: 'SNS CONTENT / 실무',
-      range: '( 43 - 48 )',
-
-      image: 'assets/images/page-02-orion.png',
-      target: '#page-43',
-
-      barX: 895,
-      barY: 612,
-
-      previewX: 1576,
-      previewY: 412
+      name: 'IM BANK',
+      image: 'assets/images/page02-imbank.png',
+      x: 448,
+      y: 652,
+      target: null
     },
-
-
     {
-      title: '삼쩜삼',
-      desc: 'POP - UP STORE / 실무',
-      range: '( 49 - 57 )',
-
-      image: 'assets/images/page-02-삼쩜삼.png',
-      target: '#page-49',
-
-      barX: 645,
-      barY: 684,
-
-      previewX: 1326,
-      previewY: 729
+      name: '3.3',
+      image: 'assets/images/page02-33.png',
+      x: 1144,
+      y: 652,
+      target: '#page-49'
     },
-
-
     {
-      title: 'BPT',
-      desc: 'REBRANDING / 실무',
-      range: '( 58 - 69 )',
-
-      image: 'assets/images/page-02-bpt.png',
-      target: '#page-58',
-
-      barX: 395,
-      barY: 756,
-
-      previewX: 1076,
-      previewY: 837
+      name: 'BINGGRAE',
+      image: 'assets/images/page02-binggrae.png',
+      x: 1492,
+      y: 652,
+      target: null
     }
-
   ];
 
-
-  const layer = document.createElement('div');
-  layer.className = 'page02-project-layer';
-
-
-  /* ─────────────────────────────
-     PAGE 02 상단 텍스트
-  ───────────────────────────── */
-
   layer.innerHTML = `
+    <div class="page02-about-label">ABOUT</div>
 
-    <div class="page02-kicker page02-kicker-left">
-      INTRODUCE
+    <div class="page02-profile">
+      <div class="page02-name">전영현</div>
+      <div class="page02-profile-contact">
+        <div>010.4079.5374</div>
+        <div>biging1212@gmail.com</div>
+      </div>
     </div>
 
-    <div class="page02-kicker page02-kicker-right">
-      CONTENTS
+    <div class="page02-tool-label">TOOL</div>
+
+    <div class="page02-tool-list">
+      FIGMA<br>
+      PHOTOSHOP<br>
+      ILLUSTRATOR<br>
+      AFTER EFFECTS<br>
+      BLENDER<br>
+      CINEMA 4D
     </div>
 
+    <div class="page02-services-label">SERVICES</div>
 
-    <div class="page02-headline">
-
-      <span class="light">
-        브랜드의
-      </span>
-
-      <span class="semibold">
-        지금을 읽고,
-      </span>
-
-      <br>
-
-      <span class="semibold">
-        다음을 만드는
-      </span>
-
-      <span class="light">
-        디자이너 전영현입니다.
-      </span>
-
+    <div class="page02-services-list">
+      BRANDING<br>
+      DESIGN SYSTEMS<br>
+      CONTENT<br>
+      PACKAGE & GOODS<br>
+      POP-UP DESIGN
     </div>
-
-
-    <div class="page02-contact">
-      010.4079.5374 / biging1212@gmail.com
-    </div>
-
   `;
 
+  const x = value => `${value / 1920 * 100}%`;
+  const y = value => `${value / 1080 * 100}%`;
 
-  /* ─────────────────────────────
-     FIGMA 1920 × 1080 → %
-  ───────────────────────────── */
+  projects.forEach(project => {
 
-  const x = (value) =>
-    `${(value / 1920) * 100}%`;
-
-  const y = (value) =>
-    `${(value / 1080) * 100}%`;
-
-
-  /* ─────────────────────────────
-     대표 이미지
-
-     한 개만 만들고
-     hover된 프로젝트에 따라
-     이미지/위치만 변경
-  ───────────────────────────── */
-
-  const previews = [];
-
-
-  /* ─────────────────────────────
-     PROJECT BAR
-  ───────────────────────────── */
-
-  projects.forEach((project, index) => {
-
-    // 각 프로젝트별 대표 이미지 생성
-    const preview = document.createElement('img');
-
-    preview.className = 'page02-project-preview';
-
-    // 빙그레 이미지 전용 CSS 적용
-    if (project.previewClass) {
-      preview.classList.add(project.previewClass);
-    }
-
-    // 프로젝트별 이미지와 위치 연결
-    preview.src = project.image;
-    preview.alt = `${project.title} 대표 이미지`;
-
-    preview.loading = 'eager';
-    preview.decoding = 'async';
-
-    preview.style.left = x(project.previewX);
-    preview.style.top = y(project.previewY);
-
-    layer.appendChild(preview);
-
-    // 대표 이미지 배열에 저장
-    previews.push(preview);
-
-    const bar =
-      document.createElement('a');
-
-
-    bar.className =
-      'page02-project-bar';
-
-
-    bar.href =
-      project.target;
-
-
-    /* 정확한 Figma 좌표 */
-
-    bar.style.left =
-      x(project.barX);
-
-    bar.style.top =
-      y(project.barY);
-
-    bar.style.width =
-      x(881);
-
-    bar.style.height =
-      y(45);
-
-
-    /* 막대 내부 */
-
-    bar.innerHTML = `
-
-      <div class="page02-bar-left">
-
-        <span class="page02-bar-title">
-          ${project.title}
-        </span>
-
-
-        <span class="page02-bar-divider">
-        </span>
-
-
-        <span class="page02-bar-desc">
-          ${project.desc}
-        </span>
-
-      </div>
-
-
-      <span class="page02-bar-range">
-        ${project.range}
-      </span>
-
-    `;
-
-/* ── HOVER IN ── */
-
-const showPreview = () => {
-
-  // 다른 프로젝트 이미지는 모두 숨기고
-  // 현재 프로젝트 이미지만 표시
-  previews.forEach((img, imageIndex) => {
-
-    img.classList.toggle(
-      'is-visible',
-      imageIndex === index
+    const item = document.createElement(
+      project.target ? 'a' : 'div'
     );
 
+    item.className = 'page02-gallery-item';
+
+    if (project.target) {
+      item.href = project.target;
+    }
+
+    item.style.left = x(project.x);
+    item.style.top = y(project.y);
+
+    const img = document.createElement('img');
+
+    img.src = project.image;
+    img.alt = project.name;
+    img.loading = 'eager';
+    img.decoding = 'async';
+
+    item.appendChild(img);
+    layer.appendChild(item);
   });
-
-  // 현재 막대 활성화
-  bar.classList.add('is-active');
-
-};
-    
-/* ── HOVER OUT ── */
-
-const hidePreview = () => {
-
-  // 현재 막대에 연결된 이미지만 숨김
-  preview.classList.remove('is-visible');
-
-  bar.classList.remove('is-active');
-
-};
-
-
-// 마우스 이벤트
-bar.addEventListener('mouseenter', showPreview);
-bar.addEventListener('mouseleave', hidePreview);
-
-// 키보드 접근 지원
-bar.addEventListener('focus', showPreview);
-bar.addEventListener('blur', hidePreview);
-
-
-    layer.appendChild(bar);
-
-  });
-
 
   slot.appendChild(layer);
-
-  }
+}
 
 
 
