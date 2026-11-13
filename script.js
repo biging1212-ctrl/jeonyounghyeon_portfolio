@@ -1292,50 +1292,58 @@ function addProjectIndex(slot) {
   const layer = document.createElement('div');
   layer.className = 'page02-new-layout';
 
-  const projects = [
-    {
-      name: 'WINKLE',
-      image: 'assets/images/page02-winkle.png',
-      x: 100,
-      y: 304,
-      target: '#page-03'
-    },
-    {
-      name: 'OATERY',
-      image: 'assets/images/page02-oatery.png',
-      x: 796,
-      y: 304,
-      target: null
-    },
-    {
-      name: 'DAYMINE',
-      image: 'assets/images/page02-daymine.png',
-      x: 1492,
-      y: 304,
-      target: null
-    },
-    {
-      name: 'IM BANK',
-      image: 'assets/images/page02-imbank.png',
-      x: 448,
-      y: 652,
-      target: null
-    },
-    {
-      name: '3.3',
-      image: 'assets/images/page02-33.png',
-      x: 1144,
-      y: 652,
-      target: '#page-49'
-    },
-    {
-      name: 'BINGGRAE',
-      image: 'assets/images/page02-binggrae.png',
-      x: 1492,
-      y: 652,
-      target: null
-    }
-  ];
+  
+const projects = [
+  {
+    name: 'WINKLE',
+    desc: 'Branding / Personal Work',
+    image: 'assets/images/page02-winkle.png',
+    x: 100,
+    y: 304,
+    target: '#page-03'
+  },
+  {
+    name: 'OATERY',
+    desc: 'Branding / Personal Work',
+    image: 'assets/images/page02-oatery.png',
+    x: 796,
+    y: 304,
+    target: null
+  },
+  {
+    name: 'DAYMINE',
+    desc: 'Branding / Personal Work',
+    image: 'assets/images/page02-daymine.png',
+    x: 1492,
+    y: 304,
+    target: null
+  },
+  {
+    name: 'IM BANK',
+    desc: 'IP & CONTENT / Agency Work',
+    image: 'assets/images/page02-imbank.png',
+    x: 448,
+    y: 652,
+    target: null
+  },
+  {
+    name: '삼쩜삼',
+    desc: 'IP & CONTENT / Agency Work',
+    image: 'assets/images/page02-33.png',
+    x: 1144,
+    y: 652,
+    target: '#page-49'
+  },
+  {
+    name: "빙그레 '소원왕국'",
+    desc: 'IP & CONTENT / Agency Work',
+    image: 'assets/images/page02-binggrae.png',
+    x: 1492,
+    y: 652,
+    target: null
+  }
+];
+
 
   layer.innerHTML = `
     <div class="page02-about-label">ABOUT</div>
@@ -1388,15 +1396,37 @@ function addProjectIndex(slot) {
     item.style.left = x(project.x);
     item.style.top = y(project.y);
 
-    const img = document.createElement('img');
+    
+const img = document.createElement('img');
 
-    img.src = project.image;
-    img.alt = project.name;
-    img.loading = 'eager';
-    img.decoding = 'async';
+img.src = project.image;
+img.alt = project.name;
+img.loading = 'eager';
+img.decoding = 'async';
 
-    item.appendChild(img);
-    layer.appendChild(item);
+// 프로젝트 정보 영역 생성
+const info = document.createElement('div');
+info.className = 'page02-gallery-info';
+
+// 프로젝트 이름
+const title = document.createElement('div');
+title.className = 'page02-gallery-title';
+title.textContent = project.name;
+
+// 프로젝트 설명
+const desc = document.createElement('div');
+desc.className = 'page02-gallery-desc';
+desc.textContent = project.desc;
+
+// 정보 영역에 이름과 설명 추가
+info.appendChild(title);
+info.appendChild(desc);
+
+// 이미지 위에 정보 영역 겹치기
+item.appendChild(img);
+item.appendChild(info);
+
+layer.appendChild(item);
   });
 
   slot.appendChild(layer);
