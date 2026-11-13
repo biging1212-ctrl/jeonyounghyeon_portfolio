@@ -1,1 +1,2 @@
-# jeonyounghyeon_portfolio_lotte_ququ
+# portfolio_jyh
+brand / marketing/ food / bgf 리테일
