@@ -1467,3 +1467,129 @@ a.page02-gallery-item:focus-visible {
   opacity: 1;
   transform: translateY(0);
 }
+
+
+/* =====================================
+   PAGE 01 - NEW FIGMA DESIGN
+===================================== */
+
+/* 첫 페이지 배경 */
+#home.hero {
+  background: #F1EFEF;
+  color: #030303;
+}
+
+/* 상단 큰 이름 */
+#home .hero-bottom-name {
+  position: absolute;
+
+  left: 5.208333%;
+  top: 8.369444%;
+  bottom: auto;
+
+  transform: none;
+  margin: 0;
+
+  font-family: var(--font);
+  font-size: min(208.93px, 10.88177cqw);
+  font-weight: 800;
+
+  line-height: 1;
+  letter-spacing: -0.03em;
+
+  color: #030303;
+
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* 디자인 분야 공통 */
+#home .hero-discipline {
+  position: absolute;
+
+  top: 24.907407%;
+
+  font-family: var(--font);
+  font-size: min(16px, 0.833333cqw);
+  font-weight: 400;
+
+  line-height: 1.25;
+  letter-spacing: 0;
+
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  color: #030303;
+}
+
+/* BRAND IDENTITY */
+#home .hero-discipline--identity {
+  left: 5.208333%;
+}
+
+/* BRAND PACKAGE */
+#home .hero-discipline--package {
+  left: 33.541667%;
+}
+
+/* BRAND CONTENT */
+#home .hero-discipline--content {
+  left: 63.645833%;
+}
+
+/* 소개 문구 전체 */
+#home .hero-intro-copy {
+  position: absolute;
+
+  left: 33.541667%;
+  top: 42.87037%;
+  width: 61.25%;
+
+  font-family: var(--font);
+
+  font-size: min(30px, 1.5625cqw);
+  font-weight: 700;
+
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+
+  color: #030303;
+
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 문단 간격 */
+#home .hero-intro-copy p {
+  margin: 0;
+  padding: 0;
+}
+
+/* 타이핑 중 커서 */
+#home .hero-intro-copy p.is-typing::after {
+  content: '|';
+
+  margin-left: 2px;
+  font-weight: 400;
+
+  animation: heroIntroCaret 0.7s
+             step-end infinite;
+}
+
+/* 커서 깜빡임 */
+@keyframes heroIntroCaret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* 밝은 배경에 맞춘 이름 이동 글자색 */
+.flying-name {
+  color: #030303;
+}
+
+/* 첫 페이지의 커서 색상 */
+body:has(#home:hover) .custom-cursor {
+  border-color: #030303;
+  background: rgba(0, 0, 0, 0.12);
+}
