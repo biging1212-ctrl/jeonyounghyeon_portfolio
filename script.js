@@ -1,56 +1,94 @@
-// ── Hero Typing Animation ──
-(function initTyping() {
-  const line1 = document.getElementById('typing-line-1');
-  const line2 = document.getElementById('typing-line-2');
-  if (!line1 || !line2) return;
 
-  const TEXT_1     = 'PORTFOLIO';
-  const TEXT_2     = '2026';
-  const CHAR_SPEED = 80;   // ms per character
-  const LINE_PAUSE = 220;  // ms pause between lines
-  const END_PAUSE  = 900;  // ms before cursor disappears
+/* =====================================
+   PAGE 01 - INTRO TYPING ANIMATION
+===================================== */
 
-  // Use inner text spans so cursor element never contaminates textContent
-  const t1 = document.createElement('span');
-  const t2 = document.createElement('span');
-  const cursor = document.createElement('span');
-  cursor.className = 'hero-cursor';
-  cursor.textContent = '|';
+(function initHeroIntroTyping() {
 
-  line1.appendChild(t1);
-  line1.appendChild(cursor); // cursor starts after line1
+  const box = document.getElementById(
+    'hero-intro-copy'
+  );
 
-  function typeInto(el, text) {
-    return new Promise((resolve) => {
-      let i = 0;
-      const tick = setInterval(() => {
-        el.textContent += text[i++];
-        if (i >= text.length) { clearInterval(tick); resolve(); }
-      }, CHAR_SPEED);
+  if (!box) return;
+
+  // 움직임 줄이기 설정을 사용하면
+  // 타이핑 없이 전체 문구 표시
+  if (
+    window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+  ) {
+    return;
+  }
+
+  // HTML에 작성된 4개 문단 가져오기
+  const paragraphs = [
+    ...box.querySelectorAll('p')
+  ];
+
+  // 원래 문구 저장
+  const texts = paragraphs.map(
+    p => p.textContent.trim()
+  );
+
+  // 타이핑 속도 설정
+  const SPEED = 25;
+
+  // 문단 사이 대기 시간
+  const LINE_PAUSE = 260;
+
+  // 최초 문구 숨기기
+  paragraphs.forEach(p => {
+    p.textContent = '';
+  });
+
+  // 시간 지연 함수
+  function sleep(ms) {
+    return new Promise(resolve => {
+      setTimeout(resolve, ms);
     });
   }
 
+  // 타이핑 실행
   async function run() {
-    await new Promise((r) => setTimeout(r, 400));
 
-    await typeInto(t1, TEXT_1);
-    await new Promise((r) => setTimeout(r, LINE_PAUSE));
+    // 페이지 진입 후 시작
+    await sleep(450);
 
-    // move cursor to line2
-    line2.appendChild(t2);
-    line2.appendChild(cursor);
+    // 첫 문단부터 마지막 문단까지
+    for (
+      let i = 0;
+      i < paragraphs.length;
+      i++
+    ) {
 
-    await typeInto(t2, TEXT_2);
-    await new Promise((r) => setTimeout(r, END_PAUSE));
+      const paragraph = paragraphs[i];
 
-    // fade out cursor and remove
-    cursor.style.transition = 'opacity 0.5s';
-    cursor.style.opacity    = '0';
-    setTimeout(() => cursor.remove(), 600);
+      // 현재 문단에 커서 표시
+      paragraph.classList.add('is-typing');
+
+      // 글자 하나씩 입력
+      for (const letter of texts[i]) {
+
+        paragraph.textContent += letter;
+
+        await sleep(SPEED);
+      }
+
+      // 문단 입력 완료 후 커서 제거
+      paragraph.classList.remove('is-typing');
+
+      // 다음 문단 입력 전 잠깐 정지
+      if (i < paragraphs.length - 1) {
+        await sleep(LINE_PAUSE);
+      }
+    }
   }
 
   run();
+
 })();
+
 
 // ── Hide NAV on first page ──
 (function initHeroNav() {
@@ -918,267 +956,3 @@ layer.appendChild(item);
 
   slot.appendChild(layer);
 }
-
-
-
-// ── Page 01 Name → NAV Scroll Animation ──
-(function initNameToNavAnimation() {
-
-  const hero = document.getElementById('home');
-  const source = document.querySelector('.hero-bottom-name');
-  const nav = document.querySelector('.nav');
-  const target = document.querySelector('.nav-home-name');
-
-  if (!hero || !source || !nav || !target) return;
-
-
-  // 실제로 움직일 이름 생성
-  const flying = document.createElement('div');
-  flying.className = 'flying-name';
-
-  // Page 01 이름과 동일하게 시작
-  flying.textContent = '( JEON YOUNG HYEON )';
-
-  document.body.appendChild(flying);
-
-
-  let sourceDocX = 0;
-  let sourceDocY = 0;
-
-  let sourceFontSize = 90;
-  let targetFontSize = 14;
-
-
-  function clamp(value, min, max) {
-    return Math.min(Math.max(value, min), max);
-  }
-
-
-  function lerp(start, end, progress) {
-    return start + (end - start) * progress;
-  }
-
-
-  function measure() {
-
-    const sourceRect = source.getBoundingClientRect();
-
-    // Page 01 이름의 문서상 중앙 위치
-    sourceDocX =
-      sourceRect.left +
-      window.scrollX +
-      sourceRect.width / 2;
-
-    sourceDocY =
-      sourceRect.top +
-      window.scrollY +
-      sourceRect.height / 2;
-
-
-    sourceFontSize =
-      parseFloat(
-        window.getComputedStyle(source).fontSize
-      );
-
-
-    targetFontSize =
-      parseFloat(
-        window.getComputedStyle(target).fontSize
-      );
-
-  }
-
-
-  function update() {
-
-    const scrollY = window.scrollY;
-    const heroHeight = hero.offsetHeight;
-
-
-    /*
-      애니메이션 시작:
-      Page 01을 약 15% 스크롤했을 때
-    */
-    const startScroll = heroHeight * 0.15;
-
-
-    /*
-      애니메이션 종료:
-      Page 01 끝에 거의 도착했을 때
-    */
-    const endScroll = heroHeight * 0.92;
-
-
-    let progress =
-      (scrollY - startScroll) /
-      (endScroll - startScroll);
-
-
-    progress = clamp(progress, 0, 1);
-
-
-    /*
-      부드러운 easing
-    */
-    const eased =
-      progress * progress * (3 - 2 * progress);
-
-
-    /*
-      원래 Page 01 이름이
-      현재 화면에서 있어야 하는 위치
-    */
-    const naturalSourceX =
-      sourceDocX - window.scrollX;
-
-    const naturalSourceY =
-      sourceDocY - scrollY;
-
-
-    /*
-      NAV 중앙 목표 위치
-    */
-    const targetX =
-      window.innerWidth / 2;
-
-    const targetY =
-      nav.offsetHeight / 2;
-
-
-    /*
-      위치 이동
-    */
-    const currentX =
-      lerp(
-        naturalSourceX,
-        targetX,
-        eased
-      );
-
-
-    const currentY =
-      lerp(
-        naturalSourceY,
-        targetY,
-        eased
-      );
-
-
-    /*
-      ★ 핵심:
-      90px → 14px를 직접 변화시킴
-    */
-    const currentFontSize =
-      lerp(
-        sourceFontSize,
-        targetFontSize,
-        eased
-      );
-
-
-    flying.style.left =
-      `${currentX}px`;
-
-    flying.style.top =
-      `${currentY}px`;
-
-    flying.style.fontSize =
-      `${currentFontSize}px`;
-
-    flying.style.transform =
-      'translate(-50%, -50%)';
-
-
-    /*
-      아직 애니메이션 시작 전
-    */
-    if (progress <= 0) {
-
-      source.style.opacity = '1';
-      flying.style.opacity = '0';
-
-      nav.classList.remove('show-nav');
-
-      return;
-    }
-
-
-    /*
-      애니메이션 진행 중
-    */
-    if (progress < 1) {
-
-      source.style.opacity = '0';
-      flying.style.opacity = '1';
-
-      nav.classList.remove('show-nav');
-
-      return;
-    }
-
-
-    /*
-      NAV에 완전히 도착
-    */
-    source.style.opacity = '0';
-    flying.style.opacity = '0';
-
-    nav.classList.add('show-nav');
-
-  }
-
-
-  let ticking = false;
-
-
-  function requestUpdate() {
-
-    if (ticking) return;
-
-    ticking = true;
-
-
-    requestAnimationFrame(() => {
-
-      update();
-
-      ticking = false;
-
-    });
-
-  }
-
-
-  window.addEventListener(
-    'scroll',
-    requestUpdate,
-    { passive: true }
-  );
-
-
-  window.addEventListener(
-    'resize',
-    () => {
-
-      measure();
-      update();
-
-    }
-  );
-
-
-  window.addEventListener(
-    'load',
-    () => {
-
-      measure();
-      update();
-
-    }
-  );
-
-
-  measure();
-  update();
-
-})();
